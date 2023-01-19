@@ -1,0 +1,70 @@
+from random import *
+
+lst=["rock","paper","scissors"]
+user_result=0
+computer_result=0
+
+def user_choice():
+    global user_entry
+    while True:
+        user_entry=input("Select rock/paper/scissors: ").lower().strip()
+        if user_entry in lst:
+            break
+        else:
+            print("Invalid selection!")
+    return user_entry
+
+def computer_choice():
+    global comp_entry
+    comp_entry=choice(lst)
+    return comp_entry
+
+def determine():
+    global comp_entry
+    global user_entry
+    global user_result
+    global computer_result
+    if comp_entry==user_entry:
+        print(f"User choice: {user_entry}, Computer choice: {comp_entry}")
+        print("It's a draw!")
+    elif comp_entry=="rock" and user_entry=="paper":
+        print(f"User choice: {user_entry}, Computer choice: {comp_entry}")
+        print("You win the round!")
+        user_result+=1
+    elif comp_entry=="rock" and user_entry=="scissors":
+        print(f"User choice: {user_entry}, Computer choice: {comp_entry}")
+        print("Computer wins the round!")
+        computer_result += 1
+    elif comp_entry=="paper" and user_entry=="scissors":
+        print(f"User choice: {user_entry}, Computer choice: {comp_entry}")
+        print("You win the round!")
+        user_result += 1
+    elif comp_entry=="paper" and user_entry=="rock":
+        print(f"User choice: {user_entry}, Computer choice: {comp_entry}")
+        print("Computer wins the round!")
+        computer_result += 1
+    elif comp_entry=="scissors" and user_entry=="rock":
+        print(f"User choice: {user_entry}, Computer choice: {comp_entry}")
+        print("You win the round!")
+        user_result += 1
+    elif comp_entry=="scissors" and user_entry=="paper":
+        print(f"User choice: {user_entry}, Computer choice: {comp_entry}")
+        print("Computer wins the round!")
+        computer_result += 1
+    print(f"Current result - you: {user_result} - computer: {computer_result}\n")
+
+
+rounds=int(input("How many rounds you want to play? "))
+for i in range (1,rounds+1):
+    print(f"Round {i}:")
+    computer_choice()
+    user_choice()
+    determine()
+
+print(f"\nFinal result: you: {user_result} - computer: {computer_result}.")
+if computer_result>user_result:
+    print("Computer wins!")
+elif user_result>computer_result:
+    print("You win!")
+elif user_result==computer_result:
+    print("It is a draw!")
